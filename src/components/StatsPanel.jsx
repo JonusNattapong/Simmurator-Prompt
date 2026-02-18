@@ -1,4 +1,4 @@
-import './StatsPanel.css';
+import './css/StatsPanel.css';
 
 const SENSOR_ICONS = {
   temperature: '🌡️',

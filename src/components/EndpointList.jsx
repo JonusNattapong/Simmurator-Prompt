@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import './EndpointList.css';
+import './css/EndpointList.css';
 
 const schemas = {
   temperature: { sensorId: 'TEMP-001', type: 'temperature', value: 28.5, unit: '°C', location: 'Factory Floor A', status: 'normal' },

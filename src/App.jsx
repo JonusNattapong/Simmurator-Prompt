@@ -3,7 +3,7 @@ import Header from './components/Header.jsx';
 import EndpointList from './components/EndpointList.jsx';
 import AccessLog from './components/AccessLog.jsx';
 import StatsPanel from './components/StatsPanel.jsx';
-import './App.css';
+import './components/css/App.css';
 
 export default function App() {
   const [endpoints, setEndpoints] = useState([]);

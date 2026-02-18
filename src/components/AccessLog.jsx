@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import './AccessLog.css';
+import './css/AccessLog.css';
 
 function timeAgo(ts) {
   const diff = Date.now() - new Date(ts).getTime();
