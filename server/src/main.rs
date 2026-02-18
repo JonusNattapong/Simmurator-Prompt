@@ -1,7 +1,7 @@
 use axum::{
     extract::{
         ws::{Message, WebSocket, WebSocketUpgrade},
-        Path, Query, State,
+        ConnectInfo, Path, Query, State,
     },
     response::{
         sse::{Event, Sse},
@@ -484,6 +484,7 @@ async fn handle_socket(mut socket: WebSocket, _state: SharedState) {
 // ──────────────────────────────────────────────
 
 async fn log_middleware(
+    ConnectInfo(addr): ConnectInfo<SocketAddr>,
     State(state): State<SharedState>,
     req: axum::extract::Request,
     next: axum::middleware::Next,
@@ -491,10 +492,12 @@ async fn log_middleware(
     let start = std::time::Instant::now();
     let method = req.method().to_string();
     let endpoint = req.uri().to_string();
+    // Prefer X-Forwarded-For (set by reverse proxy), fall back to real socket IP
     let ip = req.headers().get("x-forwarded-for")
         .and_then(|h| h.to_str().ok())
-        .unwrap_or("unknown")
-        .to_string();
+        .and_then(|s| s.split(',').next())
+        .map(|s| s.trim().to_string())
+        .unwrap_or_else(|| addr.ip().to_string());
     let user_agent = req.headers().get("user-agent")
         .and_then(|h| h.to_str().ok())
         .unwrap_or("unknown")
@@ -585,5 +588,7 @@ async fn main() {
     println!("  🔌 WebSocket stream at ws://localhost:8080/ws/sensors");
     
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
-    axum::serve(listener, app).await.unwrap();
+    axum::serve(listener, app.into_make_service_with_connect_info::<SocketAddr>())
+        .await
+        .unwrap();
 }
