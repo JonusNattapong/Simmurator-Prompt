@@ -1,5 +1,6 @@
 node_modules
 dist
+server/target
 .env
 .git
 .gitignore
