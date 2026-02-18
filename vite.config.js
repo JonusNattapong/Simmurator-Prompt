@@ -13,6 +13,13 @@ export default defineConfig({
       "/events": {
         target: "http://localhost:8080",
         changeOrigin: true,
+        // SSE: disable response buffering so events stream immediately
+        configure: (proxy) => {
+          proxy.on("proxyRes", (proxyRes) => {
+            proxyRes.headers["x-accel-buffering"] = "no";
+            proxyRes.headers["cache-control"] = "no-cache";
+          });
+        },
       },
       "/ws/sensors": {
         target: "ws://localhost:8080",
