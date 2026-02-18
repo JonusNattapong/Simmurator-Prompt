@@ -1,6 +1,6 @@
 /* ============================================
    Simmurator — IoT API Monitor
-   Global Design System
+   Global Design System (Swagger UI Theme)
    ============================================ */
 
 *,
@@ -12,78 +12,48 @@
 }
 
 :root {
-  --bg-0: #faf9f6;
+  --bg-0: #f4f6f8; /* Light gray background like documentation */
   --bg-1: #ffffff;
-  --bg-2: #fdfaf7;
-  --bg-3: #f5eadd;
-  --bg-card: rgba(255, 255, 255, 0.7);
-  --bg-glass: rgba(251, 146, 60, 0.05);
-  --bg-hover: rgba(251, 146, 60, 0.1);
+  --bg-2: #fafafa;
+  --bg-3: #f0f0f0;
+  --bg-card: #ffffff;
+  --bg-hover: #f8fbff;
 
-  --text-0: #0f172a;
-  --text-1: #334155;
-  --text-2: #64748b;
-  --text-3: #94a3b8;
+  --text-0: #3b4151; /* Dark gray for text */
+  --text-1: #3b4151;
+  --text-2: #6d727a;
+  --text-3: #9ea3ac;
 
-  --accent: #f97316;
-  --accent-glow: rgba(249, 115, 22, 0.4);
-  --accent-light: #fb923c;
-  --cyan: #06b6d4;
-  --emerald: #10b981;
-  --amber: #f59e0b;
-  --rose: #f43f5e;
-  --purple: #8b5cf6;
+  --accent: #61affe; /* Swagger Blue */
+  --accent-glow: rgba(97, 175, 254, 0.2);
+  --accent-light: #4990e2;
 
-  --border: rgba(15, 23, 42, 0.08);
-  --border-accent: rgba(249, 115, 22, 0.25);
+  --emerald: #49cc90; /* Swagger Green */
+  --amber: #fca130; /* Swagger Orange */
+  --rose: #f93e3e; /* Swagger Red */
 
-  --radius: 16px;
-  --radius-sm: 10px;
-  --radius-xs: 6px;
+  --border: #dcdcdc;
+  --border-accent: #61affe;
 
-  --font-sans: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --radius: 4px;
+  --radius-sm: 4px;
+  --radius-xs: 2px;
 
-  --shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.1);
-  --shadow-accent: 0 8px 30px rgba(249, 115, 22, 0.15);
+  --font-sans:
+    "Open Sans", BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono: "Source Code Pro", "Consolas", "Monaco", monospace;
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.05);
 
   color-scheme: light;
-}
-
-@keyframes orb-float {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-30px) scale(1.05);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 var(--accent-glow);
-  }
-  50% {
-    box-shadow: 0 0 20px 4px var(--accent-glow);
-  }
 }
 
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -103,6 +73,7 @@ body {
   color: var(--text-0);
   min-height: 100vh;
   overflow-x: hidden;
+  margin: 0;
 }
 
 #root {
@@ -113,20 +84,23 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.3);
-  border-radius: 10px;
+  background: #ccc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
+  background: rgba(97, 175, 254, 0.3);
 }
 
 code,
@@ -134,11 +108,42 @@ pre {
   font-family: var(--font-mono);
 }
 
-a {
-  color: var(--cyan);
-  text-decoration: none;
+/* Base Panel (Shared Utility) */
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
-a:hover {
-  text-decoration: underline;
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #fafafa;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-0);
+}
+
+.panel-title svg {
+  color: #61affe;
+}
+
+.panel-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  background: #eee;
+  border-radius: 12px;
+  color: #666;
 }

@@ -71,11 +71,8 @@ export default function App() {
 
   return (
     <div className="app">
-      <div className="bg-effects">
-        <div className="bg-grid" />
-        <div className="bg-orb bg-orb-1" />
-        <div className="bg-orb bg-orb-2" />
-      </div>
+      {/* No more floating orbs, just clean Swagger UI */}
+
 
       <Header connected={connected} totalRequests={totalRequests} />
 

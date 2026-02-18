@@ -214,19 +214,18 @@ export default function EndpointList({ endpoints }) {
 
         {/* ── WebSocket Control Bar ── */}
         <div className="ws-control-bar">
-          <span className="ws-status-dot" style={{ color: wsStatusColor, fontWeight: 600, fontSize: '0.8rem' }}>
+          <span className={`ws-status-dot status-${wsStatus}`}>
             {wsStatusLabel}
           </span>
 
           {wsStatus === 'connected' && (
             <>
-              <label className="ws-interval-label" style={{ fontSize: '0.78rem', color: '#94a3b8' }}>
+              <label className="ws-interval-label">
                 Interval:
                 <select
                   className="ws-interval-select"
                   value={wsInterval}
                   onChange={(e) => changeInterval(Number(e.target.value))}
-                  style={{ marginLeft: 4, background: '#1e293b', color: '#e2e8f0', border: '1px solid #334155', borderRadius: 4, padding: '2px 6px', fontSize: '0.78rem' }}
                 >
                   <option value={100}>100 ms</option>
                   <option value={500}>500 ms</option>
@@ -238,7 +237,7 @@ export default function EndpointList({ endpoints }) {
               <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
                 {subscribed.size} sensor{subscribed.size !== 1 ? 's' : ''} streaming
               </span>
-              <button className="sw-copy-btn" style={{ marginLeft: 'auto' }} onClick={disconnect}>
+              <button className="sw-copy-btn" onClick={disconnect}>
                 Disconnect
               </button>
             </>
@@ -271,11 +270,7 @@ export default function EndpointList({ endpoints }) {
 
                   {/* Live badge */}
                   {isLive && (
-                    <span style={{
-                      fontSize: '0.68rem', fontWeight: 700, color: '#22c55e',
-                      background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)',
-                      borderRadius: 99, padding: '1px 8px', marginRight: 4, letterSpacing: '0.04em',
-                    }}>
+                    <span className="sw-live-badge">
                       ● LIVE
                     </span>
                   )}
@@ -283,11 +278,11 @@ export default function EndpointList({ endpoints }) {
                   {/* Subscribe/Unsubscribe toggle */}
                   <button
                     className={isLive ? 'sw-copy-btn' : 'sw-execute-btn'}
-                    style={{ fontSize: '0.72rem', padding: '3px 10px', marginRight: 4 }}
                     onClick={(e) => handleLiveToggle(e, ep.name)}
                     title={isLive ? 'Unsubscribe from live stream' : 'Subscribe to live stream via WebSocket'}
+                    style={{ marginLeft: 'auto', padding: '4px 10px', fontSize: '11px', width: 'auto', minWidth: '60px' }}
                   >
-                    {isLive ? '⏹ Stop' : '📡 Live'}
+                    {isLive ? 'Stop' : 'Live'}
                   </button>
 
                   <button className="sw-expand-icon">
@@ -299,10 +294,10 @@ export default function EndpointList({ endpoints }) {
                 {isLive && live && (
                   <div className="sw-live-ticker">
                     <div className="sw-live-ticker-meta">
-                      <span style={{ color: '#22c55e', fontWeight: 600, fontSize: '0.72rem' }}>⚡ LIVE</span>
-                      <span style={{ color: '#64748b', fontSize: '0.7rem' }}>{live.timestamp}</span>
+                      <span style={{ color: '#22c55e', fontWeight: 600 }}>⚡ LIVE</span>
+                      <span style={{ color: '#666' }}>{live.timestamp}</span>
                     </div>
-                    <pre className="sw-result-body" style={{ margin: 0, maxHeight: 180, fontSize: '0.72rem' }}>
+                    <pre className="sw-result-body" style={{ maxHeight: 180 }}>
                       <code>{JSON.stringify(live.data, null, 2)}</code>
                     </pre>
                   </div>
