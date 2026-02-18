@@ -5,7 +5,8 @@
 ![Orange-White Theme](https://img.shields.io/badge/Theme-Orange--White-orange?style=for-the-badge)
 ![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)
 ![Vite](https://img.shields.io/badge/Vite-6-purple?style=for-the-badge&logo=vite)
-![Express](https://img.shields.io/badge/Express-4-green?style=for-the-badge&logo=express)
+![Rust](https://img.shields.io/badge/Rust-1.75+-brown?style=for-the-badge&logo=rust)
+![Axum](https://img.shields.io/badge/Axum-0.7-blue?style=for-the-badge)
 
 ---
 
@@ -48,7 +49,7 @@ The dashboard features a **High-Tech Next-Gen UI** designed to impress:
 ## 🛠 Tech Stack
 
 * **Frontend:** React 19, Vite, Vanilla CSS (Custom Design System)
-* **Backend:** Node.js, Express.js
+* **Backend:** Rust (Axum, Tokio)
 * **Communication:**
   * **REST API:** Standard HTTP endpoints for sensor data retrieval.
   * **SSE:** For real-time event broadcasting.
@@ -81,15 +82,16 @@ npm run dev
 ```
 
 * **Dashboard Display:** <http://localhost:5173>
-* **API Base:** <http://localhost:3001/api/v1>
-* **SSE Stream:** <http://localhost:3001/events>
-* **WebSocket:** ws://localhost:3001/ws/sensors
+* **API Base:** <http://localhost:8080/api/v1>
+* **SSE Stream:** <http://localhost:8080/events>
+* **WebSocket:** ws://localhost:8080/ws/sensors
 
 ---
 
 ## 📡 Simulated Sensors
 
 The system simulates a variety of industrial IoT sensors:
+
 * **Temperature & Humidity:** Environmental monitoring.
 * **Oil Level & Pressure:** Pipeline and storage tank diagnostics.
 * **Energy Meter:** Power consumption, voltage, and power factor.

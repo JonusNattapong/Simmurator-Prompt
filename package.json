@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "vite",
-    "dev:server": "node --watch server/index.js",
+    "dev:server": "cargo run --manifest-path server/Cargo.toml",
     "build": "vite build",
     "preview": "vite preview"
   },

@@ -1,0 +1,18 @@
+[package]
+name = "simmurator-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7.5", features = ["ws", "macros"] }
+tokio = { version = "1.37.0", features = ["full"] }
+serde = { version = "1.0.197", features = ["derive"] }
+serde_json = "1.0.115"
+tower-http = { version = "0.5.2", features = ["cors", "trace", "fs"] }
+rand = "0.8.5"
+chrono = { version = "0.4.37", features = ["serde"] }
+futures-util = "0.3.30"
+tokio-stream = { version = "0.1.15", features = ["sync"] }
+uuid = { version = "1.8.0", features = ["v4"] }
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"

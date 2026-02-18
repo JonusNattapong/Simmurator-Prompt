@@ -1,31 +1,31 @@
-# Build stage
-FROM node:20-alpine AS build
-
+# Stage 1: Build Frontend
+FROM node:20-alpine AS frontend-builder
 WORKDIR /app
-
-# Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
-
-# Copy source and build the frontend
 COPY . .
 RUN npm run build
 
-# Production stage
-FROM node:20-alpine
-
+# Stage 2: Build Backend (Rust)
+FROM rust:1.75-slim AS backend-builder
 WORKDIR /app
+# Install build dependencies
+RUN apt-get update && apt-get install -y pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
+COPY server/Cargo.toml server/Cargo.lock* ./server/
+COPY server/src ./server/src
+WORKDIR /app/server
+RUN cargo build --release
 
-# Copy only necessary files from build stage
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/server ./server
-COPY --from=build /app/package*.json ./
+# Stage 3: Runtime
+FROM debian:bookworm-slim
+WORKDIR /app
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+# Copy frontend assets
+COPY --from=frontend-builder /app/dist ./dist
+# Copy backend binary
+COPY --from=backend-builder /app/server/target/release/simmurator-server ./server-bin
 
-# Install only production dependencies
-RUN npm install --production
-
-# Expose the API and Frontend port (merged in server/index.js)
 EXPOSE 3001
-
-# Start the server
-CMD ["node", "server/index.js"]
+# Start the server (ensure paths for static files match the binary location)
+CMD ["./server-bin"]
