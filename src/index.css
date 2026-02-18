@@ -1,0 +1,144 @@
+/* ============================================
+   Simmurator — IoT API Monitor
+   Global Design System
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-0: #faf9f6;
+  --bg-1: #ffffff;
+  --bg-2: #fdfaf7;
+  --bg-3: #f5eadd;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --bg-glass: rgba(251, 146, 60, 0.05);
+  --bg-hover: rgba(251, 146, 60, 0.1);
+
+  --text-0: #0f172a;
+  --text-1: #334155;
+  --text-2: #64748b;
+  --text-3: #94a3b8;
+
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.4);
+  --accent-light: #fb923c;
+  --cyan: #06b6d4;
+  --emerald: #10b981;
+  --amber: #f59e0b;
+  --rose: #f43f5e;
+  --purple: #8b5cf6;
+
+  --border: rgba(15, 23, 42, 0.08);
+  --border-accent: rgba(249, 115, 22, 0.25);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+
+  --font-sans: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.1);
+  --shadow-accent: 0 8px 30px rgba(249, 115, 22, 0.15);
+
+  color-scheme: light;
+}
+
+@keyframes orb-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px var(--accent-glow);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-0);
+  color: var(--text-0);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 10px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

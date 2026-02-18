@@ -1,0 +1,376 @@
+/* ============================================
+   Simmurator — Swagger UI Style
+   ============================================ */
+
+.swagger-panel {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-lg);
+  animation: slide-up 0.7s ease-out;
+}
+
+/* ── Info Section ── */
+.swagger-info {
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 24px;
+}
+
+.swagger-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--text-0);
+  margin-bottom: 8px;
+}
+
+.swagger-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.swagger-version {
+  background: var(--text-0);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+
+.swagger-base {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.swagger-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+/* ── Section Title ── */
+.swagger-section-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin: 40px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.swagger-section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Endpoint Items ── */
+.swagger-endpoints {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sw-item {
+  margin-bottom: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+}
+
+.sw-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.sw-item.method-get {
+  border-left: 6px solid var(--accent);
+}
+
+.sw-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sw-method {
+  font-weight: 900;
+  font-size: 0.8rem;
+  padding: 6px 16px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: white;
+  min-width: 70px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+}
+
+.sw-path {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-0);
+}
+
+.sw-summary {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+.sw-expand-icon {
+  background: none;
+  border: none;
+  color: var(--text-3);
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+/* ── Expanded Content ── */
+.sw-content {
+  background: var(--bg-0);
+  padding: 24px;
+  border-top: 1px solid var(--border);
+}
+
+@keyframes sw-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sw-section-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-0);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sw-section-label::before {
+  content: "";
+  width: 4px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.sw-params-empty {
+  font-size: 0.8rem;
+  color: var(--text-3);
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.sw-responses-wrapper {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.sw-response-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.sw-status-code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--emerald);
+}
+
+.sw-status-desc {
+  font-size: 0.8rem;
+  color: var(--text-1);
+}
+
+/* ── Tabs (Example/Model) ── */
+.sw-schema-tabs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sw-tab {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 0;
+  color: var(--text-3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.sw-tab.active {
+  color: var(--text-0);
+  border-bottom-color: var(--text-0);
+}
+
+.sw-schema-box {
+  background: #1e293b;
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  margin: 12px 0;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sw-schema-box code {
+  color: #38bdf8;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* ── Execution Area ── */
+.sw-try-area {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.sw-execute-btn {
+  background: var(--text-0);
+  color: white;
+  border: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 12px 32px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.sw-execute-btn:hover {
+  transform: translateY(-2px);
+  background: var(--accent);
+  box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+.sw-execute-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sw-copy-btn {
+  background: #fdfaf7;
+  color: var(--text-1);
+  border: 1px solid #f97316;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sw-copy-btn:hover {
+  background: var(--bg-hover);
+}
+
+/* ── Results Area ── */
+.sw-result-area {
+  margin-top: 24px;
+  background: #0f172a;
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  border: 1px solid #1e293b;
+}
+
+.sw-result-meta {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 20px;
+}
+
+.sw-result-meta span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.sw-result-meta b {
+  color: white;
+}
+
+.sw-result-body {
+  background: #fcf6f0;
+  padding: 16px;
+  border-radius: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+}
+
+.sw-result-body code {
+  color: #10b981;
+  font-size: 0.85rem;
+}
+
+/* ── WebSocket Control Bar ── */
+.ws-control-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding: 10px 16px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Live Ticker (per endpoint) ── */
+.sw-live-ticker {
+  background: #0a1628;
+  border-top: 1px solid rgba(34, 197, 94, 0.25);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.15);
+  padding: 10px 20px;
+  animation: ws-fade-in 0.25s ease;
+}
+
+.sw-live-ticker-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+@keyframes ws-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
