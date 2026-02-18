@@ -1,0 +1,9 @@
+services:
+  simmurator:
+    build: .
+    container_name: simmurator
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
