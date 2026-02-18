@@ -508,7 +508,15 @@ async fn log_middleware(
     let status_code = response.status().as_u16();
     let response_time = start.elapsed().as_millis();
 
-    // Skip logging for WS and SSE if they generate too much noise, but for this app we log everything
+    // Skip noisy internal/polling endpoints from the access log
+    let skip = endpoint.starts_with("/api/v1/access-log")
+        || endpoint.starts_with("/api/v1/stats")
+        || endpoint.starts_with("/events")
+        || endpoint.starts_with("/ws/");
+    if skip {
+        return response;
+    }
+
     let mut counter = state.request_counter.lock().unwrap();
     *counter += 1;
     let id = *counter;
